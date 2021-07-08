@@ -10,10 +10,18 @@ export const NewPost: React.FC<NewPostProps> = ({ currentUser }) => {
   const [postValue, setPostValue] = useState<string>("");
 
   const handlePost = async (e: any) => {
+    if (!postValue) {
+      window.alert("Please enter text to create a post");
+      return;
+    }
+
     await firebase.firestore().collection("posts").add({
       message: postValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       userName: currentUser.displayName,
+      userID: currentUser.uid,
+      likes: 0,
+      likedBy: [],
     });
 
     setNewPostScreen(false);
@@ -38,11 +46,7 @@ export const NewPost: React.FC<NewPostProps> = ({ currentUser }) => {
         onChange={(e) => setPostValue(e.target.value)}
       ></textarea>
       <div className="newPostButtonSection">
-        <button
-          className="newPostButton"
-          disabled={!postValue}
-          onClick={(e) => handlePost(e)}
-        >
+        <button className="newPostButton" onClick={(e) => handlePost(e)}>
           Post!
         </button>
         <button

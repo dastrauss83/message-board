@@ -4,38 +4,26 @@ import firebase from "firebase";
 type NavbarProps = {
   currentUser: any;
   setCurrentUser: any;
+  setPostsToDisplay: any;
+  posts: any;
 };
 
 export const Navbar: React.FC<NavbarProps> = ({
   currentUser,
   setCurrentUser,
+  setPostsToDisplay,
+  posts,
 }) => {
   const handleLogin = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
+
     if (!currentUser) {
       firebase
         .auth()
         .signInWithPopup(provider)
         .then((result) => {
-          // /** @type {firebase.auth.OAuthCredential} */
-          // const credential = result.credential;
-
-          // // This gives you a Google Access Token. You can use it to access the Google API.
-          // const token = credential.accessToken;
-          // // The signed-in user info.
           setCurrentUser(result.user);
-          // ...
         });
-      // .catch((error) => {
-      //   // Handle Errors here.
-      //   const errorCode = error.code;
-      //   const errorMessage = error.message;
-      //   // The email of the user's account used.
-      //   const email = error.email;
-      //   // The firebase.auth.AuthCredential type that was used.
-      //   const credential = error.credential;
-      //   // ...
-      // });
     } else {
       if (window.confirm("Are you sure you want to Log Out?")) {
         setCurrentUser();
@@ -43,23 +31,32 @@ export const Navbar: React.FC<NavbarProps> = ({
     }
   };
 
+  const handleUnfilter = () => {
+    setPostsToDisplay(posts);
+  };
+
+  const handleFilter = () => {
+    const filteredPosts = [...posts].filter(
+      (post) => currentUser.uid === post.userID
+    );
+    setPostsToDisplay(filteredPosts);
+  };
+
   return (
     <div className="navbar">
+      {currentUser ? (
+        <button className="navbarButton" onClick={() => handleUnfilter()}>
+          All Posts
+        </button>
+      ) : null}
+      {currentUser ? (
+        <button className="navbarButton" onClick={() => handleFilter()}>
+          My Posts
+        </button>
+      ) : null}
       <button
         className="navbarButton"
-        onClick={() => console.log(currentUser)}
-        // onClick = take to home page
-      >
-        Home
-      </button>
-      <button
-        className="navbarButton"
-        //onClick = filter posts to just this user
-      >
-        My Posts
-      </button>
-      <button
-        className="navbarButton"
+        id="loginButton"
         onClick={() => handleLogin()}
         //onClick = Login/Logout (on Logout window.confirm)
       >

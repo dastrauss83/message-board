@@ -9,18 +9,35 @@ type PostProps = {
 export const Post: React.FC<PostProps> = ({ post, currentUser }) => {
   let displayDate;
   if (post.createdAt) {
-    const toDateTime = (secs: number) => {
-      const t = new Date(1970, 0, 1); // Epoch
-      t.setSeconds(secs);
-      return t;
-    };
-    const date = toDateTime(post.createdAt["seconds"]);
+    const date = post.createdAt.toDate();
     displayDate = `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`;
   }
 
-  const handleDelete = async (e: any) => {
+  const firebasePost = firebase
+    .firestore()
+    .collection("posts")
+    .doc(`${post.id}`);
+
+  const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this post?")) {
-      await firebase.firestore().collection("posts").doc(`${post.id}`).delete();
+      await firebasePost.delete();
+    }
+  };
+
+  const handleLike = async () => {
+    if (post.likedBy.includes(currentUser.uid)) {
+      const index = post.likedBy.indexOf(currentUser.iud);
+      const tempLikedBy = [...post.likedBy];
+      tempLikedBy.splice(index, 1);
+      await firebasePost.update({
+        likes: post.likes - 1,
+        likedBy: tempLikedBy,
+      });
+    } else {
+      await firebasePost.update({
+        likes: post.likes + 1,
+        likedBy: [...post.likedBy, currentUser.uid],
+      });
     }
   };
 
@@ -31,9 +48,19 @@ export const Post: React.FC<PostProps> = ({ post, currentUser }) => {
         <div>{displayDate}</div>
       </div>
       <div className="message">{post.message}</div>
+      <div className="likes">
+        {currentUser ? (
+          <button className="likeButton" onClick={() => handleLike()}>
+            !!
+          </button>
+        ) : null}
+        Likes: {post.likes}
+      </div>
       {currentUser ? (
-        currentUser.displayName === post.userName ? (
-          <button onClick={(e) => handleDelete(e)}>Delete Post</button>
+        currentUser.uid === post.userID ? (
+          <button className="deleteButton" onClick={() => handleDelete()}>
+            Delete
+          </button>
         ) : null
       ) : null}
     </div>

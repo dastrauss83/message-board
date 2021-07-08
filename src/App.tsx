@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -31,14 +31,24 @@ const App: React.FC = () => {
     .collection("posts")
     .orderBy("createdAt", "desc");
   const [posts] = useCollectionData(query, { idField: "id" });
+  const [postsToDisplay, setPostsToDisplay] = useState<any>();
+
+  useEffect(() => {
+    setPostsToDisplay(posts);
+  }, [posts]);
 
   return (
     <div className="body">
-      <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      <Navbar
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        setPostsToDisplay={setPostsToDisplay}
+        posts={posts}
+      />
       <Login currentUser={currentUser} />
       {currentUser ? <NewPost currentUser={currentUser} /> : null}
-      {posts &&
-        posts.map((post) => (
+      {postsToDisplay &&
+        postsToDisplay.map((post: any) => (
           <Post key={post.id} post={post} currentUser={currentUser} />
         ))}
     </div>
