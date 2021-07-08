@@ -1,38 +1,121 @@
-.App {
-  text-align: center;
+html {
+  background-color: rgba(55, 155, 122, 0.3);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 96%;
+  height: 30px;
+  background-color: rgba(55, 155, 122, 0.8);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  margin-bottom: 20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.navbarButton {
+  border: solid;
+  background-color: transparent;
+  border-width: 1px;
+  border-radius: 10px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.navbarButton:hover {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  transform: scale(1.02);
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbarButton:active {
+  transform: scale(1);
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 30vh;
+  border: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  background-color: rgba(245, 245, 245, 0.9);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  font-size: 140%;
+}
+
+.postID {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 4px;
+  padding-right: 4px;
+  width: calc(100% - 8px);
+  height: 20%;
+  border-bottom: solid;
+  border-width: 1px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: rgba(55, 155, 122, 0.8);
+  color: white;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  padding-left: 4px;
+  padding-right: 4px;
+  width: calc(100% - 8px);
+  height: 20px;
+  border-bottom: solid;
+  border-width: 1px;
+  height: 60%;
+}
+
+.interact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 4px;
+  padding-right: 4px;
+  width: calc(100% - 8px);
+  height: 20%;
+  border-bottom: solid;
+  border-width: 1px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: rgba(55, 155, 122, 0.8);
+  color: white;
+}
+
+.commentSection {
+  display: flex;
+  width: 80%;
+}
+
+.comment {
+  border-radius: 5px;
+  padding-left: 4px;
+  padding-right: 4px;
+  font-size: 90%;
+  width: 90%;
+}
+
+.likeSection {
+  display: flex;
+  border: solid;
+}
+
+.lkeButton {
+}
+
+.likes {
 }
