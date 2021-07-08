@@ -1,32 +1,25 @@
 import React from "react";
 
-export const Post: React.FC = () => {
+type PostProps = {
+  post: any;
+};
+
+export const Post: React.FC<PostProps> = ({ post }) => {
+  const toDateTime = (secs: number) => {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(secs);
+    return t;
+  };
+  const date = toDateTime(post.createdAt["seconds"]);
+  const displayDate = `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`;
+
   return (
     <div className="post">
       <div className="postID">
-        <div>Username</div>
-        <div>Time</div>
+        <div>{post.userName}</div>
+        <div>{displayDate}</div>
       </div>
-      <div className="message">Message</div>
-      <div className="interact">
-        <div className="commentSection">
-          <input type="text" placeholder="Comment" className="comment" />
-          <button
-          //onClick = post comment
-          >
-            Post
-          </button>
-        </div>
-        <div className="likeSection">
-          <button
-            className="likeButton"
-            //onClick = like message
-          >
-            !!
-          </button>
-          <div className="likes">#</div>
-        </div>
-      </div>
+      <div className="message">{post.message}</div>
     </div>
   );
 };

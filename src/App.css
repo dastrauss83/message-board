@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 html {
   background-color: rgba(55, 155, 122, 0.3);
+  font-family: "Roboto", sans-serif;
 }
 
 .body {
@@ -39,6 +42,11 @@ html {
   transform: scale(1);
 }
 
+.login {
+  font-size: 150%;
+  margin-bottom: 20px;
+}
+
 .post {
   display: flex;
   flex-direction: column;
@@ -50,6 +58,7 @@ html {
   background-color: rgba(245, 245, 245, 0.9);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   font-size: 140%;
+  margin-bottom: 20px;
 }
 
 .postID {
@@ -74,48 +83,5 @@ html {
   padding-left: 4px;
   padding-right: 4px;
   width: calc(100% - 8px);
-  height: 20px;
-  border-bottom: solid;
-  border-width: 1px;
-  height: 60%;
-}
-
-.interact {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 4px;
-  padding-right: 4px;
-  width: calc(100% - 8px);
-  height: 20%;
-  border-bottom: solid;
-  border-width: 1px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  background-color: rgba(55, 155, 122, 0.8);
-  color: white;
-}
-
-.commentSection {
-  display: flex;
-  width: 80%;
-}
-
-.comment {
-  border-radius: 5px;
-  padding-left: 4px;
-  padding-right: 4px;
-  font-size: 90%;
-  width: 90%;
-}
-
-.likeSection {
-  display: flex;
-  border: solid;
-}
-
-.lkeButton {
-}
-
-.likes {
+  height: 80%;
 }
