@@ -37,7 +37,9 @@ export const Navbar: React.FC<NavbarProps> = ({
       //   // ...
       // });
     } else {
-      setCurrentUser();
+      if (window.confirm("Are you sure you want to Log Out?")) {
+        setCurrentUser();
+      }
     }
   };
 

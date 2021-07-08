@@ -5,15 +5,12 @@ type LoginProps = {
 };
 
 export const Login: React.FC<LoginProps> = ({ currentUser }) => {
-  return (
-    <div>
-      {currentUser ? (
-        <div className="login">
-          Currently Logged in as: {currentUser.displayName}
-        </div>
-      ) : (
-        <div className="login">Log in to post</div>
-      )}
+  return currentUser ? (
+    <div className="login">
+      <div className="loginMessage">Currently logged in as:</div>
+      <div>{currentUser.displayName}</div>
     </div>
+  ) : (
+    <div className="login">Log in to start posting!</div>
   );
 };

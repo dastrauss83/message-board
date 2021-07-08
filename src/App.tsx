@@ -11,6 +11,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Navbar } from "./Navbar";
 import { Post } from "./Post";
 import { Login } from "./Login";
+import { NewPost } from "./NewPost";
 
 firebase.initializeApp({
   apiKey: "AIzaSyDXCSxU-KqMmR4udegjgDEC3jGNCCDImWE",
@@ -25,16 +26,21 @@ firebase.initializeApp({
 const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<any>(null);
 
-  const query = firebase.firestore().collection("posts").orderBy("createdAt");
+  const query = firebase
+    .firestore()
+    .collection("posts")
+    .orderBy("createdAt", "desc");
   const [posts] = useCollectionData(query, { idField: "id" });
-
-  posts && console.log(posts[0]["createdAt"]);
 
   return (
     <div className="body">
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <Login currentUser={currentUser} />
-      {posts && posts.map((post) => <Post key={post.id} post={post} />)}
+      {currentUser ? <NewPost currentUser={currentUser} /> : null}
+      {posts &&
+        posts.map((post) => (
+          <Post key={post.id} post={post} currentUser={currentUser} />
+        ))}
     </div>
   );
 };

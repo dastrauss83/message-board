@@ -6,9 +6,12 @@ html {
 }
 
 .body {
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .navbar {
@@ -16,7 +19,7 @@ html {
   align-items: center;
   justify-content: space-around;
   width: 96%;
-  height: 30px;
+  height: 40px;
   background-color: rgba(55, 155, 122, 0.8);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin-bottom: 20px;
@@ -25,6 +28,8 @@ html {
 }
 
 .navbarButton {
+  width: 75px;
+  height: 30px;
   border: solid;
   background-color: transparent;
   border-width: 1px;
@@ -43,8 +48,83 @@ html {
 }
 
 .login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-size: 150%;
   margin-bottom: 20px;
+}
+
+.loginMessage {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.newPost {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.createPostButton {
+  width: 75px;
+  height: 30px;
+  border: solid;
+  background-color: rgba(55, 155, 122, 0.8);
+  border-width: 1px;
+  border-radius: 10px;
+  color: white;
+}
+
+.createPostButton:hover {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.createPostButton:active {
+  transform: scale(1);
+}
+
+.newPostInput {
+  height: 100px;
+  width: 100%;
+  border: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 10px;
+  font: inherit;
+}
+
+.newPostButtonSection {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.newPostButton {
+  width: 75px;
+  height: 30px;
+  border: solid;
+  background-color: rgba(55, 155, 122, 0.8);
+  border-width: 1px;
+  border-radius: 10px;
+  color: white;
+}
+
+.newPostButton:hover {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.newPostButton:active {
+  transform: scale(1);
 }
 
 .post {
@@ -57,7 +137,7 @@ html {
   border-radius: 10px;
   background-color: rgba(245, 245, 245, 0.9);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  font-size: 140%;
+  font-size: 130%;
   margin-bottom: 20px;
 }
 
