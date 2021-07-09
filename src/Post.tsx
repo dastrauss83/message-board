@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import moment from "moment";
 import React from "react";
 
 type PostProps = {
@@ -9,8 +10,7 @@ type PostProps = {
 export const Post: React.FC<PostProps> = ({ post, currentUser }) => {
   let displayDate;
   if (post.createdAt) {
-    const date = post.createdAt.toDate();
-    displayDate = `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`;
+    displayDate = moment(post.createdAt.toDate()).startOf("minute").fromNow();
   }
 
   const firebasePost = firebase
