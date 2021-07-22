@@ -26,7 +26,7 @@ export const Post: React.FC<PostProps> = ({ post, currentUser }) => {
 
   const handleLike = async () => {
     if (post.likedBy.includes(currentUser.uid)) {
-      const index = post.likedBy.indexOf(currentUser.iud);
+      const index = post.likedBy.indexOf(currentUser.uid);
       const tempLikedBy = [...post.likedBy];
       tempLikedBy.splice(index, 1);
       await firebasePost.update({
